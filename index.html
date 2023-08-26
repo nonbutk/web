@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="/favicon.png">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>★ nonbut</title>
+<link rel="stylesheet" type="text/css" href="/include/css/font.css" />
+<link rel="stylesheet" type="text/css" href="/include/css/index.css" />
+<style>
+/*a.sect { border:1px solid gray; }*/
+
+ul { padding:0; }
+li { cursor:pointer; }
+
+/*#nav_top { position:fixed; left:0; top:0; width:100%; height:40px; background:lightblue; }*/
+#nav_top .nav_title li { float:left; display:inline; margin:0 30px 0 0; list-style:none;
+	font-weight:bold; color:black; /*outline:1px solid red;*/ }
+#nav_top .nav_title li:hover { color:darkblue; }
+
+/*#nav_sub_box { display:none; !*outline:1px solid green;*! }*/
+/*#nav_sub_box .nav_sub { float:left; position:absolute; !*background:rgba(11,11,11,0.5);*! }*/
+#nav_sub_box .nav_sub li { list-style:none; /*outline:1px solid blue;*/ }
+/*#nav_sub_box:after { clear:both; content:""; display:block; }*/
+
+/*#nav_right { position:fixed; left:600px; background:rgba(127,255,212,0.5); color:rgb(0,127,84); height:300px; z-index:10; outline:1px solid rgba(0,127,84,1); }*/
+
+#nav_right a:link, #nav_right a:visited, #nav_right a:hover, #nav_right a:active
+{ color:rgb(0,127,84); }
+
+#header { margin:40px 0 0 0; }
+
+article { display:block; background-color:white;}
+article:after { clear:both; content:""; display:block; }
+.sect { margin:3px; padding:1px 3px 2px 3px; display:inline-block;}
+
+#colorBlocks { background-color:white; }
+#colorBlocks ul li { float:left; list-style-type:none; margin:3px 0 0 3px; padding:3px; width:154px; }
+/*#colorBlocks ul li .rgb { font-size:12px; line-height:16px; }!* font-size:10px; line-height:16px; 이 최하임*!*/
+#colorBlocks:after { clear:both; content:""; display:block; }
+
+.bold { font-weight:bold; }
+
+/*#img4 {width:30px}*/
+
+/*.test { text-decoration:dashed !* wavy dotted double underline overline *! }*/
+</style>
+<script src="/include/js/libs/jquery.min.js"></script>
+<script src="/include/js/util.js"></script>
+</head>
+<body>
+
+<details>
+	<summary>summary 상세</summary>
+	<span>span 내용</span>
+</details>
+
+<!--<picture>-->
+	<!--<source srcset="include/img/1-youtube.png" media="(min-width:1200px)"/>-->
+	<!--<source srcset="include/img/2-eng.png" media="(min-width:900px)"/>-->
+	<!--<source srcset="include/img/3-dict.png" media="(min-width:500px)"/>-->
+	<!--<img src="include/img/4-huri.png" id="img4"/>&lt;!&ndash;기본 이미지 (picture, source 태그 미지원 시) &ndash;&gt;-->
+<!--</picture>-->
+
+<label><input type="date"></label>
+<label><input type="month"></label>
+<label><input type="week"></label>
+<label><input type="time"></label>
+
+<label for="movie">Favorite movie?</label>
+<input type="text" list="movie-options" id="movie"/>
+<datalist id="movie-options"><!--input에 입력하는 글자가 option 중에 있으면 다 보여줌-->
+	<option value="Dune"/>
+	<option value="Matrix"/>
+	<option value="Iron Man"/>
+	<option value="Spider Man"/>
+</datalist>
+
+<!--<custom-input></custom-input>-->
+
+<!--<nav id="nav_top">-->
+	<!--<ul class="nav_title">-->
+		<!--<li>Study</li>-->
+		<!--<li>Cafes</li>-->
+		<!--<li>Util</li>-->
+		<!--<li class="test">Test</li>-->
+		<!--<li>-->
+			<!--<a href="publ/images/dynamic.html" target="_blank">반응형웹</a>-->
+		<!--</li>-->
+	<!--</ul>-->
+
+	<!--<div id="nav_sub_box">-->
+		<!--<ul class="nav_sub">-->
+			<!--<li>English</li>-->
+			<!--<li>Japanese</li>-->
+		<!--</ul>-->
+
+		<!--<ul class="nav_sub">-->
+			<!--<li>Cafee</li>-->
+			<!--<li>Ito</li>-->
+		<!--</ul>-->
+
+		<!--<ul class="nav_sub">-->
+			<!--<li>Timer</li>-->
+			<!--<li>Clock</li>-->
+		<!--</ul>-->
+	<!--</div>-->
+<!--</nav>-->
+
+<!--<nav id="nav_right">-->
+	<!--<a href="http://www.naver.com" target="_blank">Naver</a>-->
+<!--</nav>-->
+
+<header id="header">
+	<h1 id="title">Here, you can study English</h1>
+	
+	<button onclick="changeColor();">Change Color</button>
+	<label><input type="text" id="color" /></label>
+</header>
+
+<article>
+	<div id="category" class="pageList"></div>
+	<div id="part"></div>
+</article>
+
+<div>
+	<label for="number">숫자</label><input id="number" type="number" min="-50" max="100" /><br/>
+	<label><input id="number_checker" type="text" /></label>
+</div>
+
+<div id="colorBlocks"></div>
+
+<footer>
+	<h2>Ingul Jang reserves all copyrights.</h2>
+</footer>
+
+<template id="tmp1">
+	<label>이메일<input></label>
+	<style>label {color:red}</style><!--스타일 태그가 내부에만 적용됨-->
+</template>
+
+<script type="text/javascript">
+$(document).ready(function()//JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+{
+	/*
+	$("<custom-input></custom-input>").prependTo("body");
+
+	class myClass extends HTMLElement{
+		connectedCallback(){
+			this.attachShadow({mode:"open"});
+
+//			this.shadowRoot.innerHTML = `<label>이메일<input></label>
+//				<style>label {color:red}</style>`;	//style 태그가 내부에만 적용됨
+
+			this.shadowRoot.append(tmp1.content.cloneNode(true));
+		}//connectedCallback()
+	}//class
+
+	customElements.define("custom-input", myClass);
+	*/
+    //색상표 만들기
+    $("#colorBlocks").append( getColorBlocks() );
+
+//    //색상표에 RGB 표시
+//	$("#colorBlocks li").append("<br/>"+ $(this).css("background-color") );
+
+
+    $("#colorBlocks li").each(function()
+	{
+        //배경에 어울리는 글자색 설정
+	    let fontColor = getFontColorMatchingBgColor( $(this) );
+        $(this).css("color", fontColor );
+
+        //색상표에 RGB 표시
+        $(this).append("<span class='rgb'>" +
+							"<br/>&nbsp;"+ $(this).css("background-color").replace("rgba(","bg : ").replace("rgb(","bg : ").replace(")","") +
+
+        					"<br/>&nbsp;"+ $(this).css("color").replace("rgba(","fg : ").replace("rgb(","fg : ").replace(")","") +
+						"</span>");
+
+
+        //Toggle bold
+        $(this).bind("mouseover mouseout", function()
+		{
+            $(this).toggleClass("bold");
+		}
+		).bind("click", function()
+		{
+		    //$(this).toggleClass("zoom");
+		});
+	});
+
+	//글자 크기 변경
+    $("#number").each(function()
+	{
+       $(this).bind("click", function(){
+           $("#colorBlocks ul li .rgb").css("font-size", $(this).val() +"px");
+           console.log( $(this).val() );
+	   });
+	});
+
+	$("#nav_top .nav_title li").each(function(idx)
+	{
+		//서브 메뉴 표시
+		$(this).bind("mouseover", function(){
+			$("#nav_sub_box").toggle();
+		});
+
+		//각 서브메뉴의 위치 설정
+		let title_left = $(this).offset().left;
+		let title_width = $(this).width();
+
+		$("#nav_sub_box .nav_sub").eq(idx).css({left:title_left, width:title_width});
+		clNameVal("idx", idx);
+		clNameVal("left", title_left);
+		clNameVal("width", title_width);
+	});
+
+	window.arrLink = [
+		{text:"포인트", href:"#"},
+
+		{text:"캐시워크", href:"https://luckyquiz3.blogspot.com/search/label/%EC%BA%90%EC%8B%9C%EC%9B%8C%ED%81%AC%20%EB%8F%88%EB%B2%84%EB%8A%94%ED%80%B4%EC%A6%88?&max-results=7"},
+
+		{text:"캐시닥", href:"https://luckyquiz3.blogspot.com/search/label/%EC%BA%90%EC%8B%9C%EB%8B%A5%2F%ED%83%80%EC%9E%84%EC%8A%A4%ED%94%84%EB%A0%88%EB%93%9C%20%EC%9A%A9%EB%8F%88%ED%80%B4%EC%A6%88?&max-results=7"},
+
+		{text:"네이버", href:"https://www.naver.com/"},
+		{text:"뉴스", href:"https://news.naver.com/"},
+
+		{text:"달력", href:"http://calendar.naver.com/"},
+
+		{text:"네 지도", href:"https://map.naver.com/v5/?c=15,0,0,0,dh"},
+
+		{text:"네 지도 도로교통공단", href:"https://map.naver.com/v5/directions/14142514.33164933,4504225.55078488,%EB%8F%84%EB%A1%9C%EA%B5%90%ED%86%B5%EA%B3%B5%EB%8B%A8%EC%84%9C%EC%9A%B8%EC%A7%80%EB%B6%80,11629772,PLACE_POI/-/-/transit?c=15,0,0,0,dh"},
+
+		{text:"카 지도", href:"https://map.kakao.com/"},
+
+		{text:"양재동 날씨", href:"https://search.naver.com/search.naver?ie=UTF-8&sm=whl_hty&query=%EC%96%91%EC%9E%AC%EB%8F%99+%EB%82%A0%EC%94%A8"},
+
+		{text:"구글", href:"https://www.google.com/"},
+		{text:"구글이미지", href:"https://www.google.co.kr/imghp?hl=ko&ogbl"},
+		{text:"구글포토", href:"https://www.google.com/photos/about/"},
+
+		{text:"간청소", href:"https://cafe.naver.com/easytellcafe"},
+		{text:"패널", href:"https://www.panel.co.kr/user/main"},
+
+
+
+		//Work
+		{text:'●업무', href:'#'},
+		{text:'kip',	href:'work/kip.html'},
+		{text:'Temp',	href:'work/temp.html'},
+		{text:'구글검색',	href:'work/googleSearch.php'},
+
+		//English
+		{text:'●영어', href:'#'},
+		{text:'study',	href:'study/study_books.php'},
+		{text:'Gilmore Girls',	href:'eng/gilmore-girls-en-ko.html'},
+		{text:'Essence 4',	href:'eng/essence4.html'},
+		{text:'Cafes',	href:'index/cafes_ori.html'},
+		{text:'Eng Kor',		href:'/engkor/bible.html'},
+		{text:'English Texts',	href:'/eng2/eng.html'},
+		{text:'Android English Texts',	href:'/eng2android/eng.html'},
+		{text:'TodayIFoundOut', href:'http://www.todayifoundout.com'},
+		{text:'Ugly Betty 4',	href:"/eng2/books/ugly_betty4.html"},
+		{text:'Ugly Betty 7',	href:"/jig/ugly7utf8.html"},
+		{text:'Invisible Man',		href:'eng/invisible_man.html'},
+		{text:'영절하 - School',	href:'eng/yjh_school.html'},
+		{text:'영절하 - 일반',		href:'eng/yjh_ilban.html'},
+		{text:'m2m4',				href:'eng/m2m4.html'},
+		{text:'단어와 사전',	href:'/test/word_dic.html'},
+		{text:'이비',			href:'/test/eb_20140104.html'},
+		{text:'Peacemaker 8',	href:'/test/peacemaker8.html'},
+		{text:'AcademicReading',	href:'eng/academic.html'},
+		{text:'ielts',				href:'eng/ielts2.html'},
+		{text:'ielts archer',		href:'eng/ielts_archer.html'},
+		{text:'study',			href:'eng/study.html'},
+		{text:'religion',		href:'eng/religion.html'},
+		{text:'Topics',			href:'eng/topics.html'},
+		{text:'GBS',			href:'eng/gbs.html'},
+		{text:'새창',		href:'eng/daum.html'},
+		{text:'m.daum cafes',		href:'eng/m_daum.html'},
+		{text:'사전과 카페',		href:'eng/dic_and_cafe.html'},
+
+		//Jobs
+		{text:'●취업', href:'#'},
+		{text:'jobdb-storage',		href:'/job/jobdb-storage.php'},
+		{text:'jobdb',		href:'/job/jobdb.php'},
+		{text:'x jobdb-min',		href:'/job/jobdb-min.php'},
+		{text:'All Storage',		href:'job/allStorage.php?interval=30'},
+		{text:'listStorage1',		href:'job/listStorage1_mysqli.php'},
+		{text:'listEye',		href:'job/listEye.php'},
+		{text:'Job-search',		href:'/util/job-search-get.html'},
+		{text:'Job-search-get',	href:'/util/job-search-get.html'},
+		{text:'Job Sites',		href:'eng/job_sites.html'},
+		{text:'listStorage',		href:'job/listStorage.php'},
+
+		//Japanese
+		{text:'●일본어', href:'#'},
+		{text:'NHK News',		href:'/util/nhk-news.html'},
+		{text:'JPT',		href:'eng/jpt.html'},
+
+		//Web Development
+		{text:'●개발', href:'#'},
+		{text:'PHP BBS', href:'/php/freeboard/freeboard.php'},
+		{text:'Checkbox',		href:'/util/chkbox.html'},
+		{text:'S6-Tab',		href:'/util/s6-tab.html'},
+		{text:'Note8-Tab',		href:'/util/note8-tab.html'},
+		{text:'icox 반응형웹',	href:'prj/index.html'},
+		{text:'nonbut1',		href:'http://www.nonbut1.woobi.co.kr'},
+		{text:'nonbut1-mobile',	href:'http://www.nonbut1.woobi.co.kr/-0html/responsive/mobile.html'},
+		{text:'Img Viewer',		href:'/jig/img_viewer.html'},
+		{text:'Color List',		href:'/jig/color_list.html'},
+		{text:'Popup Test',		href:"/jig/discount_rate.html"},
+
+		//Utils
+		{text:'●유틸', href:'#'},
+		{text:'Black',		href:'/jig/black.html'},
+		{text:'Dead Pixel',		href:'/jig/dead_pixel.html'},
+		{text:'기호 바꾸기',	href:'/util/replace_symbols.html'},
+		{text:'clock-move',		href:'prj/clock-move.html'},
+		{text:'Curtain Black',	href:'/util/curtain-black.html'},
+		{text:'할인율 계산',	href:'/jig/discount_rate.html'},
+		{text:'★Param Splitter', href:'/jig/param_splitter.html'},
+		{text:'Param Parser',	href:'/jig/param_parser.html'},
+		{text:'★Trim Whitespace', href:'/jig/trim_whitespace.html'},
+		{text:'★Paragraph divider', href:'/util/paragraph-divider.html'},
+		{text:'Parameter Mapper',	href:'/test/mapping_parameter.html'},
+		{text:'desktop drag drop',	href:'test/desktop_drag_drop.html'},
+		{text:'map api',			href:'test/map_api.html'},
+		{text:'storage',	href:'test/storage.html'},
+		{text:'Drag drop',	href:'test/desktop_drag_drop.html'},
+
+		//Etc.
+		{text:'●기타', href:'#'},
+		{text:'Window-Title',	href:'/util/window-title.html'},
+		{text:'Aery',			href:"http://blog.naver.com/prologue/PrologueList.nhn?blogId=wkddofl8080&categoryNo=25"},
+		{text:'BlueWaters Dream', href:'http://blog.naver.com/bluewater_33'},
+		{text:'World Weather',	href:'/jig/weather.html'},
+		{text:'Libraries',		href:'/jig/libraries.html'},
+		{text:'해촉',			href:'http://blog.naver.com/sorjsanf?Redirect=Log&logNo=150181405702'},
+		{text:'Bible',			href:'/bible/bible.html'},
+		{text:'티처빌',			href:'http://t2.tekville.co.kr:8080/biz/board/frontBoardPage.do?bbsId=177&menuSeq=216#'}
+	];//arrLink[]
+	
+	$("#category").empty();
+	
+	//링크 설정
+//	for( let i = 0; i < arrLink.length; i++ )
+//	{
+//		//$("<section class='sect' id='sect"+ i +"'>"+ arrLink[i].text +"</section>")
+//		$("<a class='sect' id='sect"+ i +"' target='_blank'>"+ arrLink[i].text +"</a>")
+//			.appendTo("#category")
+//			.attr("href", arrLink[i].href );
+//			//.attr("onclick","location.href = \'"+ arrLink[i].href +"\';");
+//	}//for
+
+	//링크 설정
+	arrLink.forEach((link, idx)=>
+	{
+		if( idx !== 0 && link.href === "#"){
+			$("#category").append("<hr>");
+		}//if
+
+		$(`<a class='sect' id='sect${idx}' target='_blank'>${link.text}</a>`)
+			.appendTo("#category")
+			.attr("href", link.href );
+	});
+
+	changeColor();
+
+	$(".sect").css({borderRadius:"5px"});//-webkit-border-radius: 5px; //-moz-border-radius: 5px;
+	$("#colorBlocks li").css({borderRadius:"7px"});//-webkit-border-radius: 5px; //-moz-border-radius: 5px;
+});//JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+
+$(function(){
+	if( 1 === 1 ) return;
+	$.support.cors = true;
+	window.obj = new XMLHttpRequest();
+	obj.open("POST", "http://www.todayifoundout.com/index.php/2013/03/the-history-of-the-goodyear-blimp");
+	obj.setRequestHeader('Access-Control-Allow-Origin', '*');	
+	
+	let url = "http://www.todayifoundout.com/index.php/2013/03/the-history-of-the-goodyear-blimp [alt=goodyear-blimp]";
+
+	//$("body").load("http://www.todayifoundout.com/index.php/2013/03/the-history-of-the-goodyear-blimp/ [alt=goodyear-blimp]", '', function(res,textStatus,xml){ for(var temp in xml) if(xml[temp] instanceof Function) console.log(xml[temp]()); else console.log(xml[temp]); console.log("textStatus:"+ textStatus +"//"); $("body").append(res);});
+
+	let dataToServer;	// = {param1: "John",	param2: "Programmer"};
+	
+	dataToServer = "";
+
+	$("#part").load( url, dataToServer , function( responseText, /*textStatus, XMLHttpRequest*/ )
+	{
+		//console.log("responseText:"+ responseText );
+		//console.log("textStatus:"+ textStatus );  //success
+		//console.log("XMLHttpRequest:"+ XMLHttpRequest ); //[object Object]
+		/*
+		for( var temp in XMLHttpRequest )
+		{
+			try{
+				if( XMLHttpRequest[temp] instanceof Function )
+					console.log("●XMLHttpRequest."+ temp +"() : "+ XMLHttpRequest[temp]() );
+				else
+					console.log("●XMLHttpRequest."+ temp +" : "+ XMLHttpRequest[temp] );
+			}catch(e){
+				continue;
+			}
+		}*/
+		
+		$("#part").html( responseText );
+		/*
+	    //관련 js 파일 로딩
+	    $.getScript("http://localhost:8080/Scripts/Codebehind/Part.js");
+	    
+	    //관련 css 파일 로딩
+	    $("head").append("<link>");    //마지막 요소 생성
+	    
+	    css = $("head").children(":last");//바로 위에서 생성된 마지막 요소 선택
+	    
+	    css.attr({
+	        rel: "stylesheet",
+	        type: "text/css",
+	        href: "http://localhost:8080/CSS/Part.css"
+	    });*/
+	});//$("#divPart").load()
+	/*
+	//일부만 로딩
+	$("#selected").load("ajax-load-server.html #divSelected", dataToServer, function( responseText, textStatus, XMLHttpRequest )
+	{//"ajax-load-server.html #divSelected"
+		console.log(":: selected", responseText );
+		$("#selected").html( responseText );
+	});*/
+});
+
+let changeColor = function()
+{
+	$("#category .sect").each(function(){
+		//랜덤으로 16진수 3개 얻기
+		let arrBgColor = [];	//배경색
+		arrBgColor[0] = Math.floor( Math.random() * 256 );
+		arrBgColor[1] = Math.floor( Math.random() * 256 );
+		arrBgColor[2] = Math.floor( Math.random() * 256 );
+
+		let iBgColorTotal = arrBgColor[0] + arrBgColor[1] + arrBgColor[2];
+		let iBgColorAvg = iBgColorTotal /3;	//배경색 rgb 값의 평균
+		let iTune = 128;
+		
+		//배경색 평균이 절반보다 작으면 글자색 밝게 한다.
+		let arrFtColor = [];	//글자색
+		arrFtColor[0] = ( iBgColorAvg < 128 ) ? arrBgColor[0] + iTune : arrBgColor[0] - iTune;
+		arrFtColor[1] = ( iBgColorAvg < 128 ) ? arrBgColor[1] + iTune : arrBgColor[1] - iTune;
+		arrFtColor[2] = ( iBgColorAvg < 128 ) ? arrBgColor[2] + iTune : arrBgColor[2] - iTune;
+		
+		$(this).css("background-color", `rgb(${arrBgColor[0]}, ${arrBgColor[1]}, ${arrBgColor[2]})`);
+
+		$(this).css("color",			`rgb(${arrFtColor[0]}, ${arrFtColor[1]}, ${arrFtColor[2]})`);
+
+//		$(this).attr("onmouseover","pickColor( this );");
+
+		$(this).mouseover(function(){
+			pickColor(this);
+		});
+
+		//$(this).data("bgColor", arrBgColor );
+		//$(this).data("ftColor", arrFtColor );
+
+		/*
+		$(this).append("<br /><table><tr><td style='width:"+ arrBgColor[0] +"px; background-color:rgb("+ arrBgColor[0] +",0,0); border:1px solid black;'></td></tr></table>"+ arrBgColor[0] +", "+ arrFtColor[0] );
+		$(this).append("<br /><table><tr><td style='width:"+ arrBgColor[1] +"px; background-color:rgb(0,"+ arrBgColor[1] +",0); border:1px solid black;'></td></tr></table>"+ arrBgColor[1] +", "+ arrFtColor[1] );
+		$(this).append("<br /><table><tr><td style='width:"+ arrBgColor[2] +"px; background-color:rgb(0,0,"+ arrBgColor[2] +"); border:1px solid black;'></td></tr></table>"+ arrBgColor[2] +", "+ arrFtColor[2] );
+		$(this).append("<br />"+ iBgColorAvg +" : "+ iBgColorTotal +" / "+ (255 *3) );
+		*/
+
+		/*window.a = "";
+
+		$("a").each(function(){
+			a += "{text:'"+ $(this).text() +"', href:'"+ $(this).attr("href") +"'},\n";
+		});
+
+		console.log( a );*/
+	});//.sect
+};
+
+//배경색과 글자색을 추출하여 정보 표시
+ let pickColor = function( item )
+{
+	$("#color").css("background-color", $(item).css("background-color") );
+	$("#color").css("color", $(item).css("color") );
+	
+	//배경색
+	let hexaBgColor = convert_rgb_to_hexaColor( $(item).css("background-color") );
+
+	//글자색
+	let hexaFtColor = convert_rgb_to_hexaColor( $(item).css("color") );
+
+	$("#color").val(`bc: ${$(item).css("background-color")} = ${hexaBgColor} / fc: ${$(item).css("color")} = ${hexaFtColor}`);
+};
+
+//rgb를 #xxyyzz 형식으로 변환
+let convert_rgb_to_hexaColor = function( rgb )
+{
+	let hexaColor = rgb.replace("rgba(","").replace("rgb(","").replace(")","").replace(/\s/g,"");
+	hexaColor = hexaColor.split(",");
+	
+	for( let i = 0; i < hexaColor.length; i++ )
+	{
+		hexaColor[i] = Number( hexaColor[i] ).toString(16);
+		
+		if( hexaColor[i].length <= 1 ){
+//			hexaColor[i] = "0"+ hexaColor[i];
+			hexaColor[i] = `0${hexaColor[i]}`;
+		}
+	}
+	
+//	hexaColor = "#"+ hexaColor[0] + hexaColor[1] + hexaColor[2];
+	hexaColor = `#${hexaColor[0]}${hexaColor[1]}${hexaColor[2]}`;
+
+	return hexaColor;
+};
+
+$("<div id='igDiv'>" +
+		"<span id='igDisp'>00:00</span>" +
+		"<button id='igBtnTimer'>Timer start</button>" +
+		"<button>Stop</button>" +
+  "</div>")
+		.append("body")
+		.click(function(){
+			let today = new Date();
+
+			window.interval4timer = setInterval(function(){
+				{
+					$("igDisp").text(today);
+				}
+			}, 1000);
+
+		});
+</script>
+</body>
+</html>
